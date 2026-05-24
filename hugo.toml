@@ -21,11 +21,5 @@ title = "Your Awesome Website"
 [outputs]
   home = ["HTML"]
 
-# Hugo Pipes needs this for the embedded SCSS partials to resolve.
-[module]
-  [[module.mounts]]
-    source = "assets"
-    target = "assets"
-
 [security.funcs]
   getenv = ['^HUGO_', '^CI$']
