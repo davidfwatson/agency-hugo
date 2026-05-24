@@ -1,0 +1,35 @@
+{{ $locale := .Site.Params.locale | default "en" }}
+{{ $t := index .Site.Data.sitetext $locale }}
+{{ $projects := where .Site.RegularPages "Section" "portfolio" }}
+
+<!-- Portfolio Modals -->
+{{ range $i, $p := $projects }}
+<div class="portfolio-modal modal fade" id="p{{ add $i 1 }}" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="close-modal" data-dismiss="modal">
+        <div class="lr">
+          <div class="rl"></div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="modal-body">
+              <h2 class="text-uppercase">{{ .Params.title }}</h2>
+              <p class="item-intro text-muted">{{ .Params.subtitle }}</p>
+              <img class="img-fluid d-block mx-auto" src="{{ .Params.image }}" alt="{{ .Params.alt }}"/>
+              {{ .Content }}
+              <button class="btn btn-primary" data-dismiss="modal" type="button">
+                <i class="fas fa-times"></i>
+                {{ $t.portfolio.closebutton | default "Close Project" }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+<!-- End Portfolio Modals -->

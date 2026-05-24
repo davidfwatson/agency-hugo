@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+
+  {{/* Optional "grey/gray" background for a single page — set
+       background: gray  in the page's frontmatter. */}}
+  {{ if or (eq .Params.background "grey") (eq .Params.background "gray") }}
+  <script>document.getElementById("page-top").className="bg-light";</script>
+  {{ end }}
+
+  <div class="container" id="pagecontainer">
+    {{ .Content }}
+  </div>
+{{ end }}

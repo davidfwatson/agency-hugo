@@ -1,0 +1,68 @@
+{{ $locale := .Site.Params.locale | default "en" }}
+{{ $t := index .Site.Data.sitetext $locale }}
+
+<!-- Timeline -->
+<section class="bg-light page-section" id="{{ $t.timeline.section | default "about" }}">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading text-uppercase">{{ $t.timeline.title | default "About" | markdownify }}</h2>
+        <h3 class="section-subheading text-muted">{{ $t.timeline.text | default "timeline" }}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="timeline">
+          {{- /* Alternate the timeline panel sides. Default start =
+                 left (uninverted), then alternate each event. An
+                 event with explicit `align: left|right` snaps to
+                 that side and resets the alternation from there.
+                 Matches the Jekyll original's "assign align"
+                 sticky-toggle pattern. */ -}}
+          {{- $align := $t.timeline.start_align | default "left" -}}
+          {{- range $t.timeline.events -}}
+            {{- if eq $align "right" -}}
+              {{- if eq .align "left" -}}
+                {{- $align = "right" -}}
+                <li>
+              {{- else -}}
+                {{- $align = "left" -}}
+                <li class="timeline-inverted">
+              {{- end -}}
+            {{- else -}}
+              {{- if eq .align "right" -}}
+                {{- $align = "left" -}}
+                <li class="timeline-inverted">
+              {{- else -}}
+                {{- $align = "right" -}}
+                <li>
+              {{- end -}}
+            {{- end -}}
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{{ .image }}" alt="{{ .alt | default "" }}">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>{{ .year | markdownify }}</h4>
+                  <h4 class="subheading">{{ .title }}</h4>
+                </div>
+                <div class="timeline-body">
+                  <div class="text-muted">{{ .desc | markdownify }}</div>
+                </div>
+              </div>
+            </li>
+          {{- end }}
+
+          {{ with $t.timeline.end }}
+          <li class="timeline-inverted">
+            <div class="timeline-image">
+              <h4>{{ . | safeHTML }}</h4>
+            </div>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Timeline -->

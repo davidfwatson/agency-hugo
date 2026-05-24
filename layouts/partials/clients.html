@@ -1,0 +1,21 @@
+{{ $locale := .Site.Params.locale | default "en" }}
+{{ $t := index .Site.Data.sitetext $locale }}
+{{ $maxHeight := index $t.clients "max-height" | default "100px" }}
+{{ $scrolling := eq (index $t.clients "horizontal-scrolling") "yes" }}
+
+<!-- Clients -->
+<section class="py-5" id="{{ $t.clients.section | default "clients" }}">
+  <div class="container">
+    <div class="row" {{ if $scrolling }}id="scrolling-clients"{{ end }}>
+      {{ range $t.clients.list }}
+      <div class="col-md-3 col-sm-6">
+        <a href="{{ .url }}">
+          <img class="img-fluid d-block mx-auto" src="{{ .logo }}" alt="{{ .title }}"
+               style="max-height: {{ $maxHeight }}">
+        </a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- End Clients -->

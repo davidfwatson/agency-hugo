@@ -1,0 +1,54 @@
+{{ $locale := .Site.Params.locale | default "en" }}
+{{ $t := index .Site.Data.sitetext $locale }}
+
+<!-- Footer -->
+<footer class="footer" id="footer" style="background-color: white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-4">
+        <span class="copyright">Copyright &copy; {{ .Site.Title }} {{ now.Year }}</span>
+      </div>
+      <!-- Social Media -->
+      <div class="col-md-4">
+        <ul class="list-inline social-buttons">
+          {{ range $t.footer.social }}
+          <li class="list-inline-item">
+            {{ if .url }}
+            <a href="{{ .url }}">
+              {{ with .icon }}<i class="{{ . }}"></i>{{ end }}
+            </a>
+            {{ end }}
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      <!-- Legal -->
+      <div class="col-md-4">
+        <ul class="list-inline quicklinks">
+          <li class="list-inline-item">
+            <a href="{{ "legal" | relURL }}">{{ $t.footer.legal | default "Privacy Policy" }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+{{/* fixPageShort pins a short subpage's footer to the bottom of the
+     viewport (Jekyll original only ran this on layout="page"). In Hugo
+     we run it on any non-home page. */}}
+{{ if not .IsHome }}
+<script>
+  fixPageShort();
+  function fixPageShort() {
+    if (window.innerHeight > document.body.offsetHeight) {
+      var f = document.getElementById("footer");
+      f.style.position = "fixed";
+      f.style.bottom = 0;
+      f.style.right = 0;
+      f.style.left = 0;
+      f.style.width = "100%";
+    }
+  }
+</script>
+{{ end }}
+<!-- End Footer -->

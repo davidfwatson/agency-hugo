@@ -1,0 +1,16 @@
+name = "Agency"
+license = "MIT"
+licenselink = "https://github.com/davidfwatson/agency-hugo/blob/main/LICENSE"
+description = "Hugo port of the Start Bootstrap 'Agency' one-page theme (originally Jekyllified by Ravi Riley as agency-jekyll-theme). Bootstrap 4, data-driven, no Ruby."
+homepage = "https://github.com/davidfwatson/agency-hugo"
+tags = ["one-page", "agency", "bootstrap", "portfolio", "business"]
+features = ["responsive", "data-driven", "i18n-ready", "sass"]
+min_version = "0.128.0"
+
+[author]
+  name = "ported by David Watson"
+
+[original]
+  name = "Ravi Riley"
+  homepage = "https://github.com/raviriley/agency-jekyll-theme"
+  repo = "https://github.com/raviriley/agency-jekyll-theme"

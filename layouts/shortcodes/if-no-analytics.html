@@ -1,0 +1,3 @@
+{{- if not .Site.Params.analytics_google -}}
+{{ .Inner | markdownify }}
+{{- end -}}

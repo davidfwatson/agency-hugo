@@ -1,0 +1,31 @@
+baseURL = "https://example.com/"
+languageCode = "en-us"
+title = "Your Awesome Website"
+
+# Default locale key for data/sitetext.yml lookups. Change to "es" or
+# "de" to switch the content language. All site copy lives in
+# data/sitetext.yml; navigation in data/navigation.yml; visual tweaks
+# in data/style.yml.
+[params]
+  locale = "en"
+  description = "Site description"
+  author = "Your Name"
+  email = "your-email@example.com"
+  # logo = { path = "/img/logo.png", height = 60 }   # optional
+  # analytics_google = "G-XXXXXXX"                   # optional GA4 ID
+  # formspree_form_path = "f/your_form_id"           # optional Formspree
+
+[markup.goldmark.renderer]
+  unsafe = true   # allow inline HTML in markdown (the Jekyll theme assumes this)
+
+[outputs]
+  home = ["HTML"]
+
+# Hugo Pipes needs this for the embedded SCSS partials to resolve.
+[module]
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+
+[security.funcs]
+  getenv = ['^HUGO_', '^CI$']

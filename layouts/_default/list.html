@@ -1,0 +1,16 @@
+{{/* Fallback list layout for any section that doesn't have its own.
+     The agency one-pager doesn't use list pages, but Hugo will warn
+     loudly without this; rendering as a minimal index of titles is a
+     reasonable default for whatever Pardis adds later. */}}
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  <div class="container" id="pagecontainer">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+    <ul>
+      {{ range .Pages }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}
